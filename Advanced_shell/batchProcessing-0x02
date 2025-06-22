@@ -13,3 +13,4 @@ for NAME in "${POKEMONS[@]}"; do
     fi
     sleep 1
 done
+3
