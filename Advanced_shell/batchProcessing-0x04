@@ -20,3 +20,4 @@ done
 
 wait
 echo "All fetch operations completed."
+kill jobs
