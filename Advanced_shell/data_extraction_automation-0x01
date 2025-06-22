@@ -1,6 +1,18 @@
 #!/bin/bash
 
-jq -r '
-  . as $p |
-  "\(.name | ascii_upcase[0])\(.name[1:]) is of type \($p.types[0].type.name | ascii_upcase), weighs \(.weight / 10)kg, and is \(.height / 10)m tall."
-' data.json
+# Extract necessary fields using jq
+name=$(jq -r '.name' data.json)
+type=$(jq -r '.types[0].type.name' data.json)
+weight=$(jq -r '.weight' data.json)
+height=$(jq -r '.height' data.json)
+
+# Convert to proper units and format using awk
+formatted_weight=$(echo "$weight" | awk '{printf "%.1f", $1 / 10}')
+formatted_height=$(echo "$height" | awk '{printf "%.1f", $1 / 10}')
+
+# Capitalize type and name using sed
+capitalized_type=$(echo "$type" | sed 's/.*/\u&/')
+capitalized_name=$(echo "$name" | sed 's/.*/\u&/')
+
+# Final output
+echo "${capitalized_name} is of type ${capitalized_type}, weighs ${formatted_weight}kg, and is ${formatted_height}m tall."
