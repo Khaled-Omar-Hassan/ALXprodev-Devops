@@ -15,4 +15,4 @@ capitalized_type=$(echo "$type" | sed 's/.*/\u&/')
 capitalized_name=$(echo "$name" | sed 's/.*/\u&/')
 
 # Final output
-echo "${capitalized_name} is of type ${capitalized_type}, weighs ${formatted_weight}kg, and is ${formatted_height}m tall."
+echo "$name is of type $type, weighs ${formatted_weight}kg, and is ${formatted_height}m tall."
